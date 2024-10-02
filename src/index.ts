@@ -25,6 +25,13 @@ export interface ClientOptions {
   basePath?: string | null | undefined;
 
   /**
+   * Disable the cors check in the browser.
+   * 
+   * Defaults to false.
+   */
+  disableCorsCheck?: boolean;
+
+  /**
    * The maximum amount of time (in milliseconds) that the client should wait for a response
    * from the server before timing out a single request.
    *
@@ -130,6 +137,7 @@ export class Groq extends Core.APIClient {
     super({
       baseURL: options.baseURL!,
       basePath: options.basePath!,
+      disableCorsCheck: options.disableCorsCheck,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,

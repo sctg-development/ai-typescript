@@ -164,6 +164,7 @@ export class APIPromise<T> extends Promise<T> {
 export abstract class APIClient {
   baseURL: string;
   basePath: string;
+  disableCorsCheck: boolean | undefined;
   maxRetries: number;
   timeout: number;
   httpAgent: Agent | undefined;
@@ -174,6 +175,7 @@ export abstract class APIClient {
   constructor({
     baseURL,
     basePath,
+    disableCorsCheck = false,
     maxRetries = 2,
     timeout = 60000, // 1 minute
     httpAgent,
@@ -181,6 +183,7 @@ export abstract class APIClient {
   }: {
     baseURL: string;
     basePath: string;
+    disableCorsCheck: boolean | undefined;
     maxRetries?: number | undefined;
     timeout: number | undefined;
     httpAgent: Agent | undefined;
@@ -188,6 +191,7 @@ export abstract class APIClient {
   }) {
     this.baseURL = baseURL;
     this.basePath = basePath;
+    this.disableCorsCheck = disableCorsCheck ?? false;
     this.maxRetries = validatePositiveInteger('maxRetries', maxRetries);
     this.timeout = validatePositiveInteger('timeout', timeout);
     this.httpAgent = httpAgent;

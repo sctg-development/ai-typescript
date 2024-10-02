@@ -10,7 +10,7 @@ export class Transcriptions extends APIResource {
    */
   create(body: TranscriptionCreateParams, options?: Core.RequestOptions): Core.APIPromise<Transcription> {
     return this._client.post(
-      '/openai/v1/audio/transcriptions',
+      `${this._client.basePath}/audio/transcriptions`,
       Core.multipartFormRequestOptions({ body, ...options }),
     );
   }

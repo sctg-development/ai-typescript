@@ -9,21 +9,21 @@ export class Models extends APIResource {
    * Get a specific model
    */
   retrieve(model: string, options?: Core.RequestOptions): Core.APIPromise<Model> {
-    return this._client.get(`/openai/v1/models/${model}`, options);
+    return this._client.get(`${this._client.basePath}/models/${model}`, options);
   }
 
   /**
    * get all available models
    */
   list(options?: Core.RequestOptions): Core.APIPromise<ModelListResponse> {
-    return this._client.get('/openai/v1/models', options);
+    return this._client.get(`${this._client.basePath}/models`, options);
   }
 
   /**
    * Delete a model
    */
   delete(model: string, options?: Core.RequestOptions): Core.APIPromise<ModelDeleted> {
-    return this._client.delete(`/openai/v1/models/${model}`, options);
+    return this._client.delete(`${this._client.basePath}/models/${model}`, options);
   }
 }
 

@@ -4,8 +4,8 @@
 /**
  * Types will get added to this namespace when you import one of the following:
  *
- *   import 'groq-sdk/shims/node'
- *   import 'groq-sdk/shims/web'
+ *   import '@sctg/ai-sdk/shims/node'
+ *   import '@sctg/ai-sdk/shims/web'
  *
  * Importing more than one will cause type and runtime errors.
  */

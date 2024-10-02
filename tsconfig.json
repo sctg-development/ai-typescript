@@ -9,9 +9,9 @@
     "esModuleInterop": true,
     "baseUrl": "./",
     "paths": {
-      "groq-sdk/_shims/auto/*": ["src/_shims/auto/*-node"],
-      "groq-sdk/*": ["src/*"],
-      "groq-sdk": ["src/index.ts"],
+      "@sctg/ai-sdk/_shims/auto/*": ["src/_shims/auto/*-node"],
+      "@sctg/ai-sdk/*": ["src/*"],
+      "@sctg/ai-sdk": ["src/index.ts"],
     },
     "noEmit": true,
 

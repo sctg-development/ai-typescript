@@ -27,7 +27,7 @@ export class Completions extends APIResource {
     body: ChatCompletionCreateParams,
     options?: Core.RequestOptions,
   ): Core.APIPromise<ChatCompletion> | Core.APIPromise<Stream<ChatCompletionChunk>> {
-    return this._client.post('/openai/v1/chat/completions', {
+    return this._client.post(`${this._client.basePath}/chat/completions`, {
       body,
       ...options,
       stream: body.stream ?? false,

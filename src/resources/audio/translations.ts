@@ -10,7 +10,7 @@ export class Translations extends APIResource {
    */
   create(body: TranslationCreateParams, options?: Core.RequestOptions): Core.APIPromise<Translation> {
     return this._client.post(
-      '/openai/v1/audio/translations',
+      `${this._client.basePath}/audio/translations`,
       Core.multipartFormRequestOptions({ body, ...options }),
     );
   }

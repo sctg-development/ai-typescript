@@ -55,12 +55,12 @@ cd groq-typescript
 # With yarn
 yarn link
 cd ../my-package
-yarn link groq-sdk
+yarn link @sctg/ai-sdk
 
 # With pnpm
 pnpm link --global
 cd ../my-package
-pnpm link -—global groq-sdk
+pnpm link -—global @sctg/ai-sdk
 ```
 
 ## Running tests

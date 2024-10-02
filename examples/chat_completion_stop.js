@@ -1,4 +1,4 @@
-const Groq = require('groq-sdk');
+const Groq = require('@sctg/ai-sdk');
 
 const groq = new Groq();
 

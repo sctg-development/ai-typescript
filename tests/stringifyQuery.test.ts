@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import { Groq } from 'groq-sdk';
+import { Groq } from '@sctg/ai-sdk';
 
 const { stringifyQuery } = Groq.prototype as any;
 

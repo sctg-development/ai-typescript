@@ -1,5 +1,5 @@
-import { createResponseHeaders } from 'groq-sdk/core';
-import { Headers } from 'groq-sdk/_shims/index';
+import { createResponseHeaders } from '@sctg/ai-sdk/core';
+import { Headers } from '@sctg/ai-sdk/_shims/index';
 
 describe('response parsing', () => {
   // TODO: test unicode characters

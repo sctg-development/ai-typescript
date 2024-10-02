@@ -20,6 +20,11 @@ export interface ClientOptions {
   baseURL?: string | null | undefined;
 
   /**
+   * Override the default base path for the API, e.g., "/openai/v1"
+   */
+  basePath?: string | null | undefined;
+
+  /**
    * The maximum amount of time (in milliseconds) that the client should wait for a response
    * from the server before timing out a single request.
    *
@@ -88,6 +93,7 @@ export class Groq extends Core.APIClient {
    *
    * @param {string | undefined} [opts.apiKey=process.env['GROQ_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['GROQ_BASE_URL'] ?? https://api.groq.com] - Override the default base URL for the API.
+   * @param {string} [opts.basePath=process.env['GROQ_BASE_PATH'] ?? /openai/v1] - Override the default base path for the API.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -99,6 +105,7 @@ export class Groq extends Core.APIClient {
   constructor({
     baseURL = Core.readEnv('GROQ_BASE_URL'),
     apiKey = Core.readEnv('GROQ_API_KEY'),
+    basePath = Core.readEnv('GROQ_BASE_PATH'),
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -111,6 +118,7 @@ export class Groq extends Core.APIClient {
       apiKey,
       ...opts,
       baseURL: baseURL || `https://api.groq.com`,
+      basePath: basePath || `/openai/v1`,
     };
 
     if (!options.dangerouslyAllowBrowser && Core.isRunningInBrowser()) {
@@ -121,6 +129,7 @@ export class Groq extends Core.APIClient {
 
     super({
       baseURL: options.baseURL!,
+      basePath: options.basePath!,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,

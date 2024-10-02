@@ -1,6 +1,6 @@
-import { multipartFormRequestOptions, createForm } from 'groq-sdk/core';
-import { Blob } from 'groq-sdk/_shims/index';
-import { toFile } from 'groq-sdk';
+import { multipartFormRequestOptions, createForm } from '@sctg/ai-sdk/core';
+import { Blob } from '@sctg/ai-sdk/_shims/index';
+import { toFile } from '@sctg/ai-sdk';
 
 describe('form data validation', () => {
   test('valid values do not error', async () => {

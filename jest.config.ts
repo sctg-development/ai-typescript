@@ -7,9 +7,9 @@ const config: JestConfigWithTsJest = {
     '^.+\\.(t|j)sx?$': ['@swc/jest', { sourceMaps: 'inline' }],
   },
   moduleNameMapper: {
-    '^groq-sdk$': '<rootDir>/src/index.ts',
-    '^groq-sdk/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
-    '^groq-sdk/(.*)$': '<rootDir>/src/$1',
+    '^@sctg/ai-sdk$': '<rootDir>/src/index.ts',
+    '^@sctg/ai-sdk/_shims/auto/(.*)$': '<rootDir>/src/_shims/auto/$1-node',
+    '^@sctg/ai-sdk/(.*)$': '<rootDir>/src/$1',
   },
   modulePathIgnorePatterns: [
     '<rootDir>/ecosystem-tests/',

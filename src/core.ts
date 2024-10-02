@@ -111,9 +111,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'groq-sdk'`:
-   * - `import 'groq-sdk/shims/node'` (if you're running on Node)
-   * - `import 'groq-sdk/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from '@sctg/ai-sdk'`:
+   * - `import '@sctg/ai-sdk/shims/node'` (if you're running on Node)
+   * - `import '@sctg/ai-sdk/shims/web'` (otherwise)
    */
   asResponse(): Promise<Response> {
     return this.responsePromise.then((p) => p.response);
@@ -127,9 +127,9 @@ export class APIPromise<T> extends Promise<T> {
    *
    * 👋 Getting the wrong TypeScript type for `Response`?
    * Try setting `"moduleResolution": "NodeNext"` if you can,
-   * or add one of these imports before your first `import … from 'groq-sdk'`:
-   * - `import 'groq-sdk/shims/node'` (if you're running on Node)
-   * - `import 'groq-sdk/shims/web'` (otherwise)
+   * or add one of these imports before your first `import … from '@sctg/ai-sdk'`:
+   * - `import '@sctg/ai-sdk/shims/node'` (if you're running on Node)
+   * - `import '@sctg/ai-sdk/shims/web'` (otherwise)
    */
   async withResponse(): Promise<{ data: T; response: Response }> {
     const [data, response] = await Promise.all([this.parse(), this.asResponse()]);
@@ -163,6 +163,7 @@ export class APIPromise<T> extends Promise<T> {
 
 export abstract class APIClient {
   baseURL: string;
+  basePath: string;
   maxRetries: number;
   timeout: number;
   httpAgent: Agent | undefined;
@@ -172,18 +173,21 @@ export abstract class APIClient {
 
   constructor({
     baseURL,
+    basePath,
     maxRetries = 2,
     timeout = 60000, // 1 minute
     httpAgent,
     fetch: overridenFetch,
   }: {
     baseURL: string;
+    basePath: string;
     maxRetries?: number | undefined;
     timeout: number | undefined;
     httpAgent: Agent | undefined;
     fetch: Fetch | undefined;
   }) {
     this.baseURL = baseURL;
+    this.basePath = basePath;
     this.maxRetries = validatePositiveInteger('maxRetries', maxRetries);
     this.timeout = validatePositiveInteger('timeout', timeout);
     this.httpAgent = httpAgent;

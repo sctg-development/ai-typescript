@@ -1,7 +1,7 @@
 {
-  "name": "groq-sdk",
+  "name": "@sctg/ai-sdk",
   "version": "0.7.0",
-  "description": "The official TypeScript library for the Groq API",
+  "description": "Unofficial TypeScript library for the Groq API",
   "author": "Groq <support@groq.com>",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
@@ -59,8 +59,8 @@
     "./shims/web.mjs"
   ],
   "imports": {
-    "groq-sdk": ".",
-    "groq-sdk/*": "./src/*"
+    "@sctg/ai-sdk": ".",
+    "@sctg/ai-sdk/*": "./src/*"
   },
   "exports": {
     "./_shims/auto/*": {
@@ -119,5 +119,9 @@
       "require": "./dist/*.js",
       "default": "./dist/*.mjs"
     }
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
   }
 }

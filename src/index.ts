@@ -26,7 +26,7 @@ export interface ClientOptions {
 
   /**
    * Disable the cors check in the browser.
-   * 
+   *
    * Defaults to false.
    */
   disableCorsCheck?: boolean;

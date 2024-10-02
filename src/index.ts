@@ -101,6 +101,7 @@ export class Groq extends Core.APIClient {
    * @param {string | undefined} [opts.apiKey=process.env['GROQ_API_KEY'] ?? undefined]
    * @param {string} [opts.baseURL=process.env['GROQ_BASE_URL'] ?? https://api.groq.com] - Override the default base URL for the API.
    * @param {string} [opts.basePath=process.env['GROQ_BASE_PATH'] ?? /openai/v1] - Override the default base path for the API.
+   * @param {boolean} [opts.disableCorsCheck=false] - Disable the cors check in the browser.
    * @param {number} [opts.timeout=1 minute] - The maximum amount of time (in milliseconds) the client will wait for a response before timing out.
    * @param {number} [opts.httpAgent] - An HTTP agent used to manage HTTP(s) connections.
    * @param {Core.Fetch} [opts.fetch] - Specify a custom `fetch` function implementation.
@@ -113,6 +114,7 @@ export class Groq extends Core.APIClient {
     baseURL = Core.readEnv('GROQ_BASE_URL'),
     apiKey = Core.readEnv('GROQ_API_KEY'),
     basePath = Core.readEnv('GROQ_BASE_PATH'),
+    disableCorsCheck = Core.readEnv('GROQ_DISABLE_CORS_CHECK') === 'true',
     ...opts
   }: ClientOptions = {}) {
     if (apiKey === undefined) {
@@ -126,6 +128,7 @@ export class Groq extends Core.APIClient {
       ...opts,
       baseURL: baseURL || `https://api.groq.com`,
       basePath: basePath || `/openai/v1`,
+      disableCorsCheck,
     };
 
     if (!options.dangerouslyAllowBrowser && Core.isRunningInBrowser()) {

@@ -331,6 +331,7 @@ export abstract class APIClient {
     const reqHeaders = this.buildHeaders({ options, headers, contentLength });
 
     const req: RequestInit = {
+      mode: this.disableCorsCheck ? 'no-cors' : 'cors',
       method,
       ...(body && { body: body as any }),
       headers: reqHeaders,

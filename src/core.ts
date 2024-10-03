@@ -165,6 +165,7 @@ export abstract class APIClient {
   baseURL: string;
   basePath: string;
   disableCorsCheck: boolean | undefined;
+  proxy: string | undefined;
   maxRetries: number;
   timeout: number;
   httpAgent: Agent | undefined;
@@ -176,6 +177,7 @@ export abstract class APIClient {
     baseURL,
     basePath,
     disableCorsCheck = false,
+    proxy,
     maxRetries = 2,
     timeout = 60000, // 1 minute
     httpAgent,
@@ -184,6 +186,7 @@ export abstract class APIClient {
     baseURL: string;
     basePath: string;
     disableCorsCheck: boolean | undefined;
+    proxy?: string | undefined;
     maxRetries?: number | undefined;
     timeout: number | undefined;
     httpAgent: Agent | undefined;
@@ -192,6 +195,7 @@ export abstract class APIClient {
     this.baseURL = baseURL;
     this.basePath = basePath;
     this.disableCorsCheck = disableCorsCheck ?? false;
+    this.proxy = proxy;
     this.maxRetries = validatePositiveInteger('maxRetries', maxRetries);
     this.timeout = validatePositiveInteger('timeout', timeout);
     this.httpAgent = httpAgent;
@@ -329,6 +333,10 @@ export abstract class APIClient {
     }
 
     const reqHeaders = this.buildHeaders({ options, headers, contentLength });
+
+    if (this.proxy) {
+      reqHeaders['X-Host-Final'] = this.proxy;
+    }
 
     const req: RequestInit = {
       mode: this.disableCorsCheck ? 'no-cors' : 'cors',

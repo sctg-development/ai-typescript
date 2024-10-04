@@ -149,6 +149,7 @@ export class Groq extends Core.APIClient {
       baseURL: options.baseURL!,
       basePath: options.basePath!,
       disableCorsCheck: options.disableCorsCheck,
+      proxy: options.proxy,
       timeout: options.timeout ?? 60000 /* 1 minute */,
       httpAgent: options.httpAgent,
       maxRetries: options.maxRetries,

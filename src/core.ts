@@ -334,14 +334,6 @@ export abstract class APIClient {
 
     const reqHeaders = this.buildHeaders({ options, headers, contentLength });
 
-    // If we're using a proxy, we need to set the final host in a header and rewrite the URL.
-    if (this.proxy) {
-      reqHeaders['X-Host-Final'] = new URL(this.baseURL).host;
-      let newBaseURL = new URL(this.baseURL);
-      newBaseURL.host = this.proxy;
-      this.baseURL = newBaseURL.toString();
-    }
-
     const req: RequestInit = {
       mode: this.disableCorsCheck ? 'no-cors' : 'cors',
       method,
@@ -370,6 +362,10 @@ export abstract class APIClient {
       reqHeaders['content-length'] = contentLength;
     }
 
+    // If we're using a proxy, we need to set the final host in a header.
+    if (this.proxy) {
+      reqHeaders['X-Host-Final'] = new URL(this.baseURL).host;
+    }
     const defaultHeaders = this.defaultHeaders(options);
     applyHeadersMut(reqHeaders, defaultHeaders);
     applyHeadersMut(reqHeaders, headers);
@@ -508,6 +504,10 @@ export abstract class APIClient {
       url.search = this.stringifyQuery(query as Record<string, unknown>);
     }
 
+    // If we're using ai-proxy we need to rewrite the URL to point to the proxy.
+    if (this.proxy) {
+      url.host = this.proxy;
+    }
     return url.toString();
   }
 

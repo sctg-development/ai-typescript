@@ -334,8 +334,12 @@ export abstract class APIClient {
 
     const reqHeaders = this.buildHeaders({ options, headers, contentLength });
 
+    // If we're using a proxy, we need to set the final host in a header and rewrite the URL.
     if (this.proxy) {
-      reqHeaders['X-Host-Final'] = this.proxy;
+      reqHeaders['X-Host-Final'] = new URL(this.baseURL).host;
+      let newBaseURL = new URL(this.baseURL);
+      newBaseURL.host = this.proxy;
+      this.baseURL = newBaseURL.toString();
     }
 
     const req: RequestInit = {

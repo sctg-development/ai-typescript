@@ -20,7 +20,7 @@ The full API of this library can be found in [api.md](api.md).
 
 <!-- prettier-ignore -->
 ```js
-import Groq from '@sctg/ai-sdk';
+import {Groq} from '@sctg/ai-sdk';
 
 const client = new Groq({
   apiKey: process.env['GROQ_API_KEY'], // This is the default and can be omitted
@@ -44,7 +44,7 @@ This library includes TypeScript definitions for all request params and response
 
 <!-- prettier-ignore -->
 ```ts
-import Groq from '@sctg/ai-sdk';
+import {Groq} from '@sctg/ai-sdk';
 
 const client = new Groq({
   apiKey: process.env['GROQ_API_KEY'], // This is the default and can be omitted
@@ -245,7 +245,7 @@ add the following import before your first import `from "Groq"`:
 // Tell TypeScript and the package to use the global web fetch instead of node-fetch.
 // Note, despite the name, this does not add any polyfills, but expects them to be provided if needed.
 import '@sctg/ai-sdk/shims/web';
-import Groq from '@sctg/ai-sdk';
+import {Groq} from '@sctg/ai-sdk';
 ```
 
 To do the inverse, add `import "@sctg/ai-sdk/shims/node"` (which does import polyfills).
@@ -258,7 +258,7 @@ which can be used to inspect or alter the `Request` or `Response` before/after e
 
 ```ts
 import { fetch } from 'undici'; // as one example
-import Groq from '@sctg/ai-sdk';
+import {Groq} from '@sctg/ai-sdk';
 
 const client = new Groq({
   fetch: async (url: RequestInfo, init?: RequestInit): Promise<Response> => {

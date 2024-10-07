@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Groq from '@sctg/ai-sdk';
+import { Groq } from '@sctg/ai-sdk';
 import { APIUserAbortError } from '@sctg/ai-sdk';
 import { Headers } from '@sctg/ai-sdk/core';
 import defaultFetch, { Response, type RequestInit, type RequestInfo } from 'node-fetch';

@@ -1,6 +1,6 @@
 // File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-import Groq, { toFile } from '@sctg/ai-sdk';
+import { Groq, toFile } from '@sctg/ai-sdk';
 import { Response } from 'node-fetch';
 
 const client = new Groq({

@@ -247,4 +247,5 @@ export namespace Groq {
   export import FunctionParameters = API.FunctionParameters;
 }
 
-export default Groq;
+export class AI extends Groq {}
+export default { Groq, AI };
